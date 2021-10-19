@@ -1,0 +1,29 @@
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modalHeader}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" class="form-control" name="name" [(ngModel)]="userData.name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" name="email" [(ngModel)]="userData.email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" class="form-control" name="phone" [(ngModel)]="userData.phone">
+      </div>
+      <div class="form-group">
+        <label for="website">Website</label>
+        <input id="website" class="form-control" name="website" [(ngModel)]="userData.website">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="sendDataToDB(userData,isCreate)">{{isCreate ? 'Save' : 'Update'}}</button>
+  </div>

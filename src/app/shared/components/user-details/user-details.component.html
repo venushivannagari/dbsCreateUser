@@ -1,0 +1,22 @@
+<div class="card p-3 mb-2">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-row align-items-center">
+      <div class="icon"><i class="bx bxl-mailchimp"></i></div>
+      <div class="ml-2 c-details">
+        <button class="m-0 btn btn-link text-black-50 p-0 btn-block" (click)="open(userInfo)"
+                style="text-align: left">{{userInfo.name}}</button>
+        <a href="mailto:{{userInfo.email}}">{{ userInfo.email}}</a>
+      </div>
+    </div>
+    <div class="badge">
+      <button class="btn btn-outline-danger btn-sm" (click)="deleteUser(userInfo.id)">Delete</button>
+    </div>
+  </div>
+  <div class="mt-5">
+    <a class="card-text" [href]="userInfo.website" target="_blank">{{userInfo.website}}</a>
+    <h5 class="card-text">{{userInfo.phone}}</h5>
+  </div>
+</div>
+<!--<ng-template let-modal>
+  <app-user-modal [modal]="modal" [modalHeader]="'Update User'"></app-user-modal>
+</ng-template>-->
