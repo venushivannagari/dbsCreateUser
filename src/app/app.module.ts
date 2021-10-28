@@ -7,7 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserDetailsComponent} from './shared/components/user-details/user-details.component';
 import {HttpClientModule} from '@angular/common/http';
 import {UserModalComponent} from './shared/components/user-modal/user-modal.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

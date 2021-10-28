@@ -1,29 +1,46 @@
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{modalHeader}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{modalHeader}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="userForm" novalidate (ngSubmit)="sendDataToDB(isCreate)">
   <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" class="form-control" name="name" [(ngModel)]="userData.name">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" class="form-control"
+             [ngClass]="userForm.get('name').invalid && userForm.get('name').touched ? 'is-invalid' : ''"
+             name="name" formControlName="name">
+      <div class="invalid-feedback" *ngIf="userForm.get('name').invalid && userForm.get('name').touched">
+        Please don't leave this empty.
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" class="form-control" name="email" [(ngModel)]="userData.email">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" class="form-control" name="email"
+             [ngClass]="userForm.get('email').invalid && userForm.get('email').touched ? 'is-invalid' : ''"
+             formControlName="email">
+      <div class="invalid-feedback" *ngIf="userForm.get('email').invalid && userForm.get('email').touched">
+        <span *ngIf="userForm.get('email').errors['required']"> Please don't leave this empty.</span>
+        <span *ngIf="userForm.get('email').errors['email']">  Please enter a valid Email.</span>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input id="phone" class="form-control" name="phone" [(ngModel)]="userData.phone">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" class="form-control"
+             [ngClass]="userForm.get('phone').invalid && userForm.get('phone').touched ? 'is-invalid' : ''"
+             name="phone" formControlName="phone">
+      <div class="invalid-feedback" *ngIf="userForm.get('phone').invalid && userForm.get('phone').touched">
+        Please don't leave this empty.
       </div>
-      <div class="form-group">
-        <label for="website">Website</label>
-        <input id="website" class="form-control" name="website" [(ngModel)]="userData.website">
-      </div>
-    </form>
+    </div>
+    <div class="form-group">
+      <label for="website">Website</label>
+      <input id="website" class="form-control" name="website" formControlName="website">
+    </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="sendDataToDB(userData,isCreate)">{{isCreate ? 'Save' : 'Update'}}</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="userForm.invalid"
+    >{{isCreate ? 'Save' : 'Update'}}</button>
   </div>
+</form>
